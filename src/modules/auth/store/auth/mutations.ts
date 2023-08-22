@@ -1,4 +1,6 @@
-export const loginUser = (state, { user, idToken, refreshToken }) => {
+import { State } from "./types"
+
+export const loginUser = (state:State, { user, idToken, refreshToken }:State) => {
   if ( idToken ) {
     localStorage.setItem('idToken', idToken),
     state.idToken = idToken
@@ -7,12 +9,12 @@ export const loginUser = (state, { user, idToken, refreshToken }) => {
     localStorage.setItem('refreshToken', refreshToken)
     state.refreshToken = refreshToken 
   }
-  delete user.password
+  delete user?.password
   state.user = user
   state.status = 'authenticated'
 
 }
-export const logout = (state) => {
+export const logout = (state:State) => {
   state.user = null
   state.idToken = null
   state.refreshToken = null

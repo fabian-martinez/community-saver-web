@@ -9,17 +9,6 @@
 	</div>
 </template>
 
-<script>
-import { defineAsyncComponent } from '@vue/runtime-core'
-import { mapActions, mapState } from 'vuex'
-export default {
-	components:{
-		login: defineAsyncComponent(() => import(/* webpackChunkName: "login" */ '../views/Login.vue')),
-		login: defineAsyncComponent(() => import(/* webpackChunkName: "register" */ '../views/Register.vue')),
-	}
-}
-</script>
-
 <style lang="scss" scoped>
     @import '../css/auth.css';
     @import '../css/util.css';

@@ -1,17 +1,18 @@
 import { computed } from "vue"
 import { useStore } from "vuex"
+import { User } from "../store/auth/types"
 
 const useAuth = () => {
     
     const store = useStore()
 
-    const registerUser = async( user ) => {
+    const registerUser = async( user:User ) => {
         
         const resp = await store.dispatch('auth/registerUser', user)
         return resp
     }
     
-    const signInUser = async( user ) => {
+    const signInUser = async( user:User ) => {
         
         const resp = await store.dispatch('auth/signInUser', user)
         return resp
