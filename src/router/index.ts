@@ -2,11 +2,11 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import authRouter from '../modules/auth/router'
 
 const routes: Array<RouteRecordRaw> = [
-  // {
-  //   path: '/',
-  //   name: 'home',
-  //   component: HomeView,
-  // },
+  {
+    path: '/',
+    name: 'home',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MainView.vue'),
+  },
   // {
   //   path: '/about',
   //   name: 'about',
