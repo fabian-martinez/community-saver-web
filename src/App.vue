@@ -1,8 +1,10 @@
 <template> 
-  <h1 v-if="authStatus === 'authenticating'">{{ authStatus }}</h1>
-    <router-view v-else />
+  <div id="app">
+    <h1 v-if="authStatus === 'authenticating'">{{ authStatus }}</h1>
+      <router-view v-else />
+  </div>
   </template>
-  <script>
+  <script lang="ts">
   import useAuth from '@/modules/auth/composables/useAuth'
   export default {
     setup() {
@@ -16,3 +18,16 @@
     }
   }
   </script>
+  <style lang="scss">
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    #app {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+  </style>
