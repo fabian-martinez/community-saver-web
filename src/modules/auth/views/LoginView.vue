@@ -51,7 +51,7 @@ setup() {
 	onSubmit: async() => {
 		const {ok, message} = await signInUser( userLogin.value )
         if(!ok) return Swal.fire('Error', message, 'error')
-        router.push({name:'dashboard'})
+        router.push({name:'dashboard-home'})
 	}
   }
 

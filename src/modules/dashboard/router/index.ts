@@ -5,7 +5,7 @@ export default {
      children: [
       {
          path: '',
-         name: 'loan',
+         name: 'dashboard-home',
          component: () => import(/* webpackChunkName: "login" */ '@/modules/dashboard/views/DashboardView.vue')
       }
      ]
