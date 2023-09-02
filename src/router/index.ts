@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import authRouter from '../modules/auth/router'
+import dashboardRouter from '../modules/dashboard/router'
+import isAuthenticatedGuard from '@/modules/auth/router/auth-guard'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -15,15 +17,15 @@ const routes: Array<RouteRecordRaw> = [
   //   // which is lazy-loaded when the route is visited.
   //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   // },
-  // {
-  //   // se llama al router del componente daybook
-  //   path: '/dashboard',
-  //   beforeEnter: [ isAuthenticatedGuard ],
-  //   ...daybookRouter
-  // },
   {
     // se llama al router del componente daybook
-    path: '/',
+    path: '/dashboard',
+    beforeEnter: [ isAuthenticatedGuard ],
+    ...dashboardRouter
+  },
+  {
+    // se llama al router del componente daybook
+    path: '/auth',
     ...authRouter 
   },
 ] 

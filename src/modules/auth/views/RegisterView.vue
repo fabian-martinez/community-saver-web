@@ -57,7 +57,7 @@ export default {
         onSubmit: async() => {
             const {ok, message} = await registerUser( userForm.value )
             if(!ok) return Swal.fire('Error', message, 'error')
-            router.push({name:'no-entry'})
+            router.push({name:'dashboard'})
         }
     }
  }

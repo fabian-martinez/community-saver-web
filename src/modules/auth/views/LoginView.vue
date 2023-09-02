@@ -27,7 +27,7 @@
 </form>  
 </template>
 
-<script>
+<script lang="ts">
 import { ref } from 'vue';
 
 import Swal from 'sweetalert2' 
@@ -51,7 +51,7 @@ setup() {
 	onSubmit: async() => {
 		const {ok, message} = await signInUser( userLogin.value )
         if(!ok) return Swal.fire('Error', message, 'error')
-        router.push({name:'no-entry'})
+        router.push({name:'dashboard'})
 	}
   }
 
