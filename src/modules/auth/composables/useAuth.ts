@@ -12,9 +12,9 @@ const useAuth = () => {
         return resp
     }
     
-    const signInUser = async( user:User ) => {
+    const signInUser = async( userToLogin:{email:string,password:string} ) => {
         
-        const resp = await store.dispatch('auth/signInUser', user)
+        const resp = await store.dispatch('auth/signInUser', userToLogin)
         return resp
     }
     
