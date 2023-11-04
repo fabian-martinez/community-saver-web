@@ -1,4 +1,5 @@
 import { MutationTree } from "vuex";
+import MemberLoansState from "../../interfaces/memberLoansState";
 
 const mutations: MutationTree<MemberLoansState> = {
   addLoan(state, loan) {
