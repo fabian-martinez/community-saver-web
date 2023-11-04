@@ -1,6 +1,6 @@
-<template lang="">
+<template lang="html">
     <div>
-        <h1>View Loan</h1>
+        <h1>Layout Loan Manager</h1>
     </div>
 </template>
 <script lang="ts">

@@ -1,6 +1,6 @@
 <template lang="">
     <div>
-        <h1>View Loan</h1>
+        <h1>Component Loan Transactions List</h1>
     </div>
 </template>
 <script lang="ts">

@@ -1,19 +1,20 @@
 <template> 
-  <div id="app">
-    <h1 v-if="authStatus === 'authenticating'">{{ authStatus }}</h1>
-      <router-view v-else />
+  <div>
+    <!-- <h1 v-if="authStatus === 'authenticating'">{{ authStatus }}</h1> -->
+      <!-- <router-view v-else /> -->
+      <router-view/>
   </div>
-  </template>
-  <script lang="ts">
-  import useAuth from '@/modules/auth/composables/useAuth'
+</template>
+ <script lang="ts">
+  // import useAuth from '@/modules/auth/composables/useAuth'
   export default {
     setup() {
-      const { authStatus, checkAuthentication } = useAuth()
+      // const { authStatus, checkAuthentication } = useAuth()
   
-      checkAuthentication()
+      // checkAuthentication()
       
       return {
-        authStatus
+        // authStatus
       }
     }
   }
