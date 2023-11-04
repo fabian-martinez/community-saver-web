@@ -1,9 +1,9 @@
 <template lang="">
     <div>
-        <h1>View Loan</h1>
+        <h1>Nav Bar</h1>
     </div>
 </template>
-<script lang="ts">
+<script>
 export default {
     
 }
