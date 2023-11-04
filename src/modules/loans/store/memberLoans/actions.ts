@@ -1,6 +1,7 @@
 import { ActionTree } from "vuex";
 import { RootState } from "@/store";
 import serverApi from "@/api/serverApi";
+import MemberLoansState from "../../interfaces/memberLoansState";
 
 const actions: ActionTree<MemberLoansState, RootState> = {
   async fetchLoans({ commit }) {
