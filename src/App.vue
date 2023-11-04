@@ -1,34 +1,70 @@
 <template> 
-  <div>
-    <!-- <h1 v-if="authStatus === 'authenticating'">{{ authStatus }}</h1> -->
-      <!-- <router-view v-else /> -->
-      <router-view/>
+<main>
+  <div id="sidebar" class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;">
+    <a href="/" class="d-block p-3 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
+      <DollarCircle width="40" height="32"></DollarCircle>
+      <span class="visually-hidden">Icon-only</span>
+    </a>
+    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+      <li class="nav-item">
+        <router-link :to="{name:'loans-manager'}" href="#" class="nav-link active py-3 border-bottom" aria-current="page" title="Prestamos" data-bs-toggle="tooltip" data-bs-placement="right">
+          <CreditCard></CreditCard>
+        </router-link>
+      </li>
+      <li>
+        <a href="#" class="nav-link py-3 border-bottom" title="Fondo" data-bs-toggle="tooltip" data-bs-placement="right">
+          <Bank></Bank>
+        </a>
+      </li>
+    </ul>
+    <div class="dropdown border-top">
+      <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
+      </a>
+      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+        <li><a class="dropdown-item" href="#">New project...</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </div>
   </div>
+  <router-view v-slot="{ Component, route }">
+        <keep-alive>
+          <component :is="Component" :key="route.name"/>
+        </keep-alive>
+      </router-view>
+</main>
 </template>
- <script lang="ts">
-  // import useAuth from '@/modules/auth/composables/useAuth'
-  export default {
-    setup() {
-      // const { authStatus, checkAuthentication } = useAuth()
-  
-      // checkAuthentication()
-      
-      return {
-        // authStatus
-      }
-    }
+ <script lang="ts" setup>
+  import { onMounted } from 'vue'
+  import { Bank, CreditCard, DollarCircle } from "@iconoir/vue"
+  import { Tooltip } from "bootstrap"
+
+  onMounted(() => {
+    let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+        new Tooltip(tooltipTriggerEl);
+      });
+  })
+</script>
+<style lang="scss">
+  main {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+    height: -webkit-fill-available;
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
-  </script>
-  <style lang="scss">
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    
-    #app {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-  </style>
+
+  .dropdown-toggle { outline: 0; }
+
+  .nav-flush .nav-link {
+    border-radius: 0;
+  }
+
+
+</style>
