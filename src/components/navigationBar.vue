@@ -45,9 +45,18 @@ onMounted(() => {
 })
 </script>
 <style lang="scss">
-    .dropdown-toggle { outline: 0; }
+
+    #sidebar {
+        height: 100vh;
+        height: -webkit-fill-available;
+        max-height: 100vh;
+    }
+
+    .dropdown-toggle { 
+        outline: 0; 
+    }
 
     .nav-flush .nav-link {
-    border-radius: 0;
+        border-radius: 0;
     }
 </style>
