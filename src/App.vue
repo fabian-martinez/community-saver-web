@@ -1,6 +1,6 @@
 <template> 
  <main>
-  <NavigatorBar></NavigatorBar>
+  <navigator-bar></navigator-bar>
   <router-view v-slot="{ Component, route }">
     <keep-alive>
       <component :is="Component" :key="route.name"/>
