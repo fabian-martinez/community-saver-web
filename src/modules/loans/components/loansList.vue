@@ -18,16 +18,13 @@
 <script lang="ts" setup>
 import { getMembers } from "@/modules/loans/composables/getMembers";
 import { onMounted, watchEffect, ref, watch, computed } from "vue";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import LoanItem from "@/modules/loans/components/loanItem.vue";
 
 const { makeRequest, results, error } = getMembers();
-
+const router = useRouter()
 const store = useStore()
-
-
-
-
 const members = results
 const selectedMember = ref(null);
 const loansByMember = computed(() => store.getters.getLoansByMember)
@@ -36,12 +33,11 @@ watch(selectedMember,(newMember) => {
     if(newMember){
         store.dispatch('loadMembers',newMember)
     }
+    router.push({name:'no-loans'})
 })
 
 onMounted(async() => {
     await makeRequest()
-    console.log(results.value);
-    console.log(members.value);
 })
 
 watchEffect(() => {
