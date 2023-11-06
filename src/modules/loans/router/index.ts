@@ -12,9 +12,9 @@ export default {
             path: ':id',
             name: 'loan',
             component: () => import(/* webpackChunkName: "daybook-entry" */ '@/modules/loans/views/LoanView.vue'),
-            // props: ( router:any ) => {
-            //    return { id: router.params.id } 
-            // }
+            props: ( router: { params: { id: string } } ) => {
+               return { id: router.params.id } 
+            }
          },
      ]
 }

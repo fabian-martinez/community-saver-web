@@ -2,7 +2,7 @@ import LoansManager from "../../interfaces/memberLoansState";
 
 const state: LoansManager = {
     loading:true,
-    member_id:"UUID",
+    member:{name:"",id:""},
     loans: [],
     total_pages:0,
     last_page:0

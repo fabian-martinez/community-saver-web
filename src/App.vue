@@ -1,11 +1,7 @@
 <template> 
  <main>
   <navigator-bar></navigator-bar>
-  <router-view v-slot="{ Component, route }">
-    <keep-alive>
-      <component :is="Component" :key="route.name"/>
-    </keep-alive>
-  </router-view>
+  <router-view></router-view>
  </main>
 </template>
 <script lang="ts" setup>
