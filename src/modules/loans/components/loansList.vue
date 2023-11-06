@@ -7,21 +7,10 @@
                     <option v-for="member in members?.items" :key="member.id" :value="member">{{ member.name }}</option>
                 </select>
             </div>
-            <div>
-                <h3>Detalles del miembro seleccionado:</h3>
-                <div v-if="selectedMember">
-                    <p>Nombre: {{ selectedMember.name }}</p>
-                    <p>ID: {{ selectedMember.id }}</p>
-                    <!-- Agrega más detalles según tus necesidades -->
-                </div>
-            </div>
 
-            <!-- Agrega una sección para mostrar los préstamos del miembro seleccionado usando Vuex -->
-            <div>
+            <div class="loans-scrollarea">
             <h3>Préstamos del miembro:</h3>
-            <ul>
-                <loan-item v-for="loan in loansByMember" :key="loan.id" ></loan-item>
-            </ul>
+            <loan-item v-for="loan in loansByMember" :key="loan.id" :loan="loan"></loan-item>
             </div>
         </div>
     </div>
@@ -62,7 +51,7 @@ watchEffect(() => {
 <style lang="scss" scoped>
     
     .loans-list-container{
-         border-right: 1px solid #93999d;
+        //  border-right: 1px solid #93999d;
          height: 100vh;
      }
      .loans-scrollarea{

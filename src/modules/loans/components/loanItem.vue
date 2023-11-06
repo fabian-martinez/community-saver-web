@@ -1,11 +1,19 @@
 <template lang="">
-    <div>
-        <h2>Loan</h2>
+    <div class="loan-item">
+        <h2 class="title">Prestamos {{loan.loan_type}}</h2>
+        <div class="info">
+            <p>Saldo: {{loan.updated_amount}}</p>
+            <p>Próximo pago: {{loan.monthly_payment}}</p>
+        </div>
     </div>
 </template>
 <script lang="ts" setup>
-import { PropType, defineProps } from "vue";
+import { PropType, defineProps, onMounted } from "vue";
 import Loan from "../interfaces/loanInterface";
+
+onMounted(() => {
+    console.log(props.loan)
+})
 
 const props = defineProps({
     loan:{
@@ -14,6 +22,26 @@ const props = defineProps({
     }
 })
 </script>
-<style lang="scss">
-    
+<style lang="scss" scoped>
+    .loan-item {
+        border-bottom: 1px solid #000;
+        width: 100%;
+        padding: 20px 10px 0px 10px;
+    }
+
+    .loan-item:hover{
+        background-color: #aaaaaa;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        font-size: 16px;
+    }
 </style>
