@@ -5,11 +5,11 @@ import getters from "./getters";
 import mutations from "./mutations";
 import actions from "./actions";
 
-const moduleName: Module<typeof state, RootState> = {
+const loanTransactionsStore: Module<typeof state, RootState> = {
   state,
   getters,
   mutations,
   actions,
 };
 
-export default moduleName;
+export default loanTransactionsStore;

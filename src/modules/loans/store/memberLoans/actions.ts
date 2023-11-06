@@ -1,16 +1,24 @@
 import { ActionTree } from "vuex";
 import { RootState } from "@/store";
 import serverApi from "@/api/serverApi";
-import MemberLoansState from "../../interfaces/memberLoansState";
+import LoansManager from "../../interfaces/memberLoansState";
+import Member from "../../interfaces/memberInterface";
 
-const actions: ActionTree<MemberLoansState, RootState> = {
-  async fetchLoans({ commit }) {
-    // Realiza una solicitud de API para obtener los préstamos y luego llama a las mutaciones correspondientes
+const actions: ActionTree<LoansManager, RootState> = {
+  async loadMembers({ commit }, member:Member) {
+    
     try {
-      const response = await serverApi.get("/api/v1/loans"); // Reemplaza con tu lógica de servicio
-      commit("addLoan", response.data);
+      const response = await serverApi.get("loans",{params:{filter:`member_id:eq:${member.id}`}}); 
+      const currentLoansByMember:LoansManager = {
+        loading:true,
+        member_id:member.id,
+        total_pages:response.data.total_pages,
+        last_page:response.data.page,
+        loans:response.data.items
+      }
+      commit("setLoans", currentLoansByMember);
     } catch (error) {
-      // Manejo de errores
+      console.error(error)
     }
   },
 };

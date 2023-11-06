@@ -1,10 +1,7 @@
 import axios from 'axios' 
 
 const serverApi = axios.create({
-    baseURL: 'https://identitytoolkit.googleapis.com/v1/accounts',
-    params:{
-        key:'AIzaSyBw9YrBMvF4vaLgSbIMU_K9itIrHrOGlZ4'
-    }
+    baseURL: 'http://127.0.0.1:8000/api/v1/'
 })
 
 export default serverApi
