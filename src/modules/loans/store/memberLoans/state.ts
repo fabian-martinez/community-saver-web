@@ -1,6 +1,8 @@
-import MemberLoansState from "../../interfaces/memberLoansState";
+import LoansManager from "../../interfaces/memberLoansState";
 
-const state: MemberLoansState = {
+const state: LoansManager = {
+    loading:true,
+    member_id:"UUID",
     loans: [],
     total_pages:0,
     last_page:0

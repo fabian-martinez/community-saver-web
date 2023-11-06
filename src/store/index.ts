@@ -9,7 +9,7 @@ export interface RootState {
 
 const store: Store<RootState> = createStore({
   modules: {
-    moduleName: loansStore,loanTransactionsStore
+    loansStore,loanTransactionsStore
   },
 });
 
