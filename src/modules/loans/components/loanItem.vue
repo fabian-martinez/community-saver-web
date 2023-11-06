@@ -9,12 +9,9 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { PropType, defineProps, onMounted } from "vue";
+import { PropType, defineProps } from "vue";
 import Loan from "../interfaces/loanInterface";
 
-onMounted(() => {
-    console.log(props.loan)
-})
 
 const props = defineProps({
     loan:{

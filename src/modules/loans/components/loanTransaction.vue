@@ -1,12 +1,18 @@
 <template lang="">
     <div>
-        <h1>Component Loan Transaction</h1>
+        <p>{{transaction}}</p>
     </div>
 </template>
-<script lang="ts">
-export default {
-    
-}
+<script lang="ts" setup>
+import LoanTransaction from '../interfaces/loanTransactionInterface';
+import { PropType, defineProps } from "vue";
+
+const props = defineProps({
+    transaction:{
+        type:Object as PropType<LoanTransaction>,
+        // required:true
+    }
+})
 </script>
 <style lang="scss">
     

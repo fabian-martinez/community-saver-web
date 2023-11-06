@@ -2,6 +2,7 @@ import LoanTransactionsState from "../../interfaces/loanTransactionsState";
 
   
   const state: LoanTransactionsState = {
+    loading:false,
     loan_id:"",
     transactions: [],
     last_page: 0,

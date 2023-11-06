@@ -6,11 +6,11 @@
         <h2>Interes: {{selectedLoan?.interest_rate * 100}}% EMV</h2>
     </div>
     <div>
-        <loan-transactions-list></loan-transactions-list>
+        <loan-transactions-list :loan_id="selectedLoan?.id"></loan-transactions-list>
     </div>
 </template>
 <script lang="ts" setup>
-import { computed, defineProps, onUpdated, ref } from "vue";
+import { computed, defineProps, onMounted, onUpdated, ref } from "vue";
 import { useStore } from "vuex";
 import Loan  from "@/modules/loans/interfaces/loanInterface";
 import LoanTransactionsList from "@/modules/loans/components/loanTransactionsList.vue";
@@ -23,10 +23,16 @@ const props = defineProps({
         } 
 })
 const loansByMember = computed(() => store.getters.getLoansByMember)
-const selectedLoan = ref<Loan>(loansByMember.value.filter((loan:Loan) => loan.id === props.id)[0]);
+const selectedLoan = ref<Loan|null>(null);
 
 onUpdated(() => {
     console.log(props.id)
+    store.dispatch('loadLoanTransactions',props.id)
+    selectedLoan.value = loansByMember.value.filter((loan:Loan) => loan.id === props.id)[0];
+})
+onMounted(() => {
+    console.log(props.id)
+    store.dispatch('loadLoanTransactions',props.id)
     selectedLoan.value = loansByMember.value.filter((loan:Loan) => loan.id === props.id)[0];
 })
 
