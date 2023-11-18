@@ -6,7 +6,8 @@ import LoanTransactionsState from "../../interfaces/loanTransactionsState";
 const actions: ActionTree<LoanTransactionsState, RootState> = {
   async loadLoanTransactions({ commit }, loan_id) {
     try {
-      const loanTransactionsResponse = (await serverApi.get(`loans/${loan_id}/transactions`)).data;
+      const queryParams = { params: { per_page: 30 } }
+      const loanTransactionsResponse = (await serverApi.get(`loans/${loan_id}/transactions`,queryParams)).data;
       const currentLoanTransactions:LoanTransactionsState = {
         loading:true,
         loan_id:loan_id,
@@ -16,7 +17,7 @@ const actions: ActionTree<LoanTransactionsState, RootState> = {
       }
       commit("setLoanTransactions", currentLoanTransactions);
     } catch (error) {
-      // Manejo de errores
+      console.error(error)
     }
   },
 };

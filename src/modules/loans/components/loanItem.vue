@@ -2,8 +2,8 @@
     <div class="loan-item" @click="$router.push( { name: 'loan', params: { id:loan.id }   })">
         <h2 class="title">Prestamos {{loan.loan_type}}</h2>
         <div class="info">
-            <p>Saldo: {{loan.updated_amount}}</p>
-            <p>Próximo pago: {{loan.monthly_payment}}</p>
+            <p>Saldo: {{$filters.currency(loan.updated_amount)}}</p>
+            <p>Próximo pago: {{$filters.currency(loan.next_total_payment)}}</p>
         </div>
         <p><small>{{loan.id}}</small></p>
     </div>
@@ -39,8 +39,12 @@ const props = defineProps({
         display: flex;
         justify-content: space-between;
         align-items: center;
-        text-align: center;
+        text-align: left;
         font-size: 16px;
+    }
+
+    .info p {
+        margin-right: 10px;
     }
 
     small {

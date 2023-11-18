@@ -1,4 +1,4 @@
-import LoansManager from "../../interfaces/memberLoansState";
+import LoansManager from "../../interfaces/loansManager";
 
 const state: LoansManager = {
     loading:true,

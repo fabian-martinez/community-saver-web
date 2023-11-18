@@ -5,6 +5,10 @@ import router from './router'
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import store from './store';
+import * as Filters from './filters';
 
-createApp(App).use(store).use(router).mount('#app')
+const app = createApp(App);
+
+app.config.globalProperties.$filters = Filters;
+app.use(store).use(router).mount('#app')
 
