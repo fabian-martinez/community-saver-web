@@ -2,15 +2,13 @@ import { MutationTree } from "vuex";
 import LoanTransactionsState from "../../interfaces/loanTransactionsState";
 
 const mutations: MutationTree<LoanTransactionsState> = {
-  addLoan(state, loan) {
-    state.transactions.push(loan);
-  },
-  removeLoan(state, loan) {
-    const index = state.transactions.indexOf(loan);
-    if (index !== -1) {
-      state.transactions.splice(index, 1);
-    }
-  },
+  setLoanTransactions(state, loanTransactions:LoanTransactionsState) {
+    state.loading=false,
+    state.last_page=loanTransactions.last_page
+    state.loan_id=loanTransactions.loan_id
+    state.total_pages=loanTransactions.total_pages
+    state.transactions=loanTransactions.transactions
+  }
 };
 
 export default mutations;

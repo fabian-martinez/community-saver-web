@@ -4,6 +4,8 @@ interface Loan{
     original_amount: number;
     updated_amount: number;
     monthly_payment: number;
+    next_interest_payment: number;
+    next_total_payment:number;
     interest_rate: number;
     created_at: number;
     updated_at: number;

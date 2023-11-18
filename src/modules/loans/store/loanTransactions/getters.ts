@@ -3,7 +3,7 @@ import { RootState } from "@/store"; // Ajusta la ruta según la ubicación real
 import LoanTransactionsState from "../../interfaces/loanTransactionsState";
 
 const getters: GetterTree<LoanTransactionsState, RootState> = {
-  totalLoans: (state) => state.transactions.length,
+  getTransactions: (state) => state.transactions,
 };
 
 export default getters;
