@@ -2,7 +2,7 @@
     <div v-if="transaction?.payment_amount > 0" class="payment-item card">
         <div class="card-body">
         <div class="d-flex justify-content-between align-items-center mb-2">
-            <span class="transaction-date">{{ transaction?.date }}</span>
+            <span class="transaction-date">{{ $filters.monthAndYear(transaction?.date) }}</span>
             <span class="badge text-bg-warning">Abono</span>
         </div>
         <div class="d-flex align-items-center">
@@ -14,7 +14,7 @@
     <div v-else class="payment-item card">
         <div class="card-body">
         <div class="d-flex justify-content-between align-items-center mb-2">
-            <span class="transaction-date">{{ transaction?.date }}</span>
+            <span class="transaction-date">{{ $filters.monthAndYear(transaction?.date) }}</span>
             <span class="badge text-bg-success">Desenbolso</span>
         </div>
         <div class="d-flex align-items-center">
