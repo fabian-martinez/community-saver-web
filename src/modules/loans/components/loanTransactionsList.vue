@@ -5,13 +5,10 @@
                 <h3>Historico de transacciones</h3>
                 <nav class="d-inline-flex align-items-center" aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link disabled" >Previous</a></li>
-                        <li class="page-item"><a class="page-link active" >1</a></li>
-                        <li class="page-item"><a class="page-link" >2</a></li>
-                        <li class="page-item"><a class="page-link" >3</a></li>
-                        <li class="page-item"><a class="page-link disabled" >...</a></li>
-                        <li class="page-item"><a class="page-link" >10</a></li>
-                        <li class="page-item"><a class="page-link" >Next</a></li>
+                        <li class="page-item"><a class="page-link" :class="{ disabled: isFirstPage}" @click="prevPage">Previous</a></li>
+                        <li class="page-item" v-for="(page, index) in browserPages" :key="index">
+                            <a class="page-link" :class="{ active: page.active}">{{page.number}}</a></li>
+                        <li class="page-item"><a class="page-link" :class="{ disabled: isLastPage}" @click="nextPage">Next</a></li>
                     </ul>
                 </nav>
                 <button class="btn btn-primary"><sort-down/> Fecha</button>
@@ -24,35 +21,63 @@
 </template>
 <script lang="ts" setup>
 import LoanTransaction from "@/modules/loans/components/loanTransaction.vue";
-import { computed } from "vue";
+import { computed, onUpdated, ref } from "vue";
 import { useStore } from "vuex";
 import { SortDown } from "@iconoir/vue"
+
 const store = useStore()
 const loanTransactions = computed(() => store.getters.getTransactions)
+const loanCurrentPagination = computed(() => store.getters.getPagination)
+const isFirstPage = ref<boolean>(true)
+const isLastPage = ref<boolean>(false)
+const browserPages = ref<{number:number,active:boolean}[]>([
+    {number:1,active:true},
+    {number:2,active:false},
+    {number:3,active:false},
+    {number:4,active:false},
+])
+
+onUpdated(() => {
+    isLastPage.value = (loanCurrentPagination.value.last_page===loanCurrentPagination.value.total_pages)?
+        true: false;
+    isFirstPage.value = (loanCurrentPagination.value.last_page===1)?
+        true: false;
+})
+
+const nextPage = () => {
+    const activeIndex = browserPages.value.findIndex(page => page.active)
+    if(activeIndex !== -1){
+        browserPages.value[activeIndex].active = false;
+        if(browserPages.value[activeIndex+1]){
+            browserPages.value[activeIndex+1].active = true;
+        }else{
+            browserPages.value.push({number:(browserPages.value[activeIndex].number+1),active:true})
+            browserPages.value.shift()
+        }
+    }
+    loanCurrentPagination.value.last_page = loanCurrentPagination.value.last_page + 1;
+    store.dispatch('moveToPageOfLoanTransactions',loanCurrentPagination.value)
+}
+const prevPage = () => {
+    const activeIndex = browserPages.value.findIndex(page => page.active)
+    console.log(browserPages.value)
+    if(activeIndex !== -1){
+        browserPages.value[activeIndex].active = false;
+        if(browserPages.value[activeIndex-1]){
+            browserPages.value[activeIndex-1].active = true;
+        }else{
+            browserPages.value.unshift({number:(browserPages.value[activeIndex].number-1),active:true})
+            browserPages.value.pop()
+        }
+    }
+    loanCurrentPagination.value.last_page = loanCurrentPagination.value.last_page - 1;
+    store.dispatch('moveToPageOfLoanTransactions',loanCurrentPagination.value)
+}
+
 </script>
 <style lang="scss" scoped>
     .transactions-scrollarea{
         height: calc( 100vh - 120px );
         overflow: scroll;
-     }
-     .pagination {
-        margin-top: 10px;
-        text-align: center;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-    }
-
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-
-    th {
-        cursor: pointer;
     }
 </style>

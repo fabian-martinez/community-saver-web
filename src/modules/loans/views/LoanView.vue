@@ -43,12 +43,10 @@ const loansByMember = computed(() => store.getters.getLoansByMember)
 const selectedLoan = ref<Loan|null>(null);
 
 onUpdated(() => {
-    console.log(props.id)
     store.dispatch('loadLoanTransactions',props.id)
     selectedLoan.value = loansByMember.value.filter((loan:Loan) => loan.id === props.id)[0];
 })
 onMounted(() => {
-    console.log(props.id)
     store.dispatch('loadLoanTransactions',props.id)
     selectedLoan.value = loansByMember.value.filter((loan:Loan) => loan.id === props.id)[0];
 })
