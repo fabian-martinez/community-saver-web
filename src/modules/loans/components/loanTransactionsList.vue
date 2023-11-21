@@ -11,16 +11,23 @@
                         <li class="page-item"><a class="page-link" :class="{ disabled: isLastPage}" @click="nextPage">Next</a></li>
                     </ul>
                 </nav>
-                <button class="btn btn-primary"><sort-down/> Fecha</button>
+                <!-- <button class="btn btn-primary"><sort-down/> Fecha</button> -->
             </div>
         </div>
         <div class="transactions-scrollarea">
-            <loan-transaction v-for="transaction in loanTransactions" :key="transaction.id" :transaction="transaction"></loan-transaction>
+            <loan-transaction v-for="transaction in loanTransactions" 
+                :key="transaction.id" 
+                :transaction="transaction"
+                :transaction_type="(transaction.payment_amount > 0)?
+                                TRANSACTION_TYPE.PAYMENT:
+                                TRANSACTION_TYPE.DISBURSEMENT">
+            </loan-transaction>
         </div>
     </div>
 </template>
 <script lang="ts" setup>
 import LoanTransaction from "@/modules/loans/components/loanTransaction.vue";
+import {TRANSACTION_TYPE} from '@/modules/loans/enums/transactionTypeEnum'
 import { computed, onUpdated, ref } from "vue";
 import { useStore } from "vuex";
 import { SortDown } from "@iconoir/vue"
