@@ -3,7 +3,7 @@ import { RootState } from "@/store"; // Ajusta la ruta según la ubicación real
 import serverApi from "@/api/serverApi";
 import LoanTransactionsState from "../../interfaces/loanTransactionsState";
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 15;
 
 const actions: ActionTree<LoanTransactionsState, RootState> = {
   async loadLoanTransactions({ commit }, loan_id) {

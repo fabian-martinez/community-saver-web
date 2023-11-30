@@ -19,11 +19,11 @@
         </div>
         </div>
         <div v-if="moreDetail" class="transaction-detail">
-            <div v-if="(transaction.interest_amount > 0)">
-                <span class="amount-label me-2">Capital:</span><span class="amount-value">{{ $filters.currency(transaction.interest_amount) }}</span>
-            </div>
             <div v-if="(transaction.payment_amount > 0)">
-                <span class="amount-label me-2">Intereses:</span><span class="amount-value">{{ $filters.currency(transaction.payment_amount) }}</span>
+                <span class="amount-label me-2">Capital:</span><span class="amount-value">{{ $filters.currency(transaction.payment_amount) }}</span>
+            </div>
+            <div v-if="(transaction.interest_amount > 0)">
+                <span class="amount-label me-2">Intereses:</span><span class="amount-value">{{ $filters.currency(transaction.interest_amount) }}</span>
             </div>
             <div>
                 <span class="amount-label me-2">Nuevo Saldo:</span><span class="amount-value">{{ $filters.currency(transaction.last_balance) }}</span>
