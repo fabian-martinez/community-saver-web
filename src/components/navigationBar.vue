@@ -7,7 +7,7 @@
     </a>
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
       <li class="nav-item">
-        <router-link :to="{name:'loans-manager'}" class="nav-link active py-3 border-bottom" aria-current="page" title="Prestamos" data-bs-toggle="tooltip" data-bs-placement="right">
+        <router-link :to="{name:'loans-manager'}" class="nav-link py-3 border-bottom" aria-current="page" title="Prestamos" data-bs-toggle="tooltip" data-bs-placement="right">
           <CreditCard></CreditCard>
         </router-link>
       </li>
@@ -58,5 +58,9 @@ onMounted(() => {
 
     .nav-flush .nav-link {
         border-radius: 0;
+    }
+
+    .nav a.router-link-active{
+      color: rgb(255, 127, 127);
     }
 </style>
