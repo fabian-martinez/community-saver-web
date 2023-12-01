@@ -10,7 +10,9 @@
 
             <div class="loans-scrollarea">
             <h3>Préstamos del miembro:</h3>
-            <loan-item v-for="loan in loansByMember" :key="loan.id" :loan="loan"></loan-item>
+            <router-link :to="{ name: 'loan', params: { id:loan.id }}" v-for="(loan) in loansByMember" :key="loan.id">
+                <loan-item :loan="loan" class="loan-item"></loan-item>
+            </router-link>
             </div>
         </div>
     </div>
@@ -46,6 +48,10 @@ watchEffect(() => {
 </script>
 <style lang="scss" scoped>
     
+    a:link, a:visited, a:active {
+        text-decoration:none;
+        color: #8b8b8b;
+    }
     .loans-list-container{
         //  border-right: 1px solid #93999d;
          height: 100vh;
@@ -54,4 +60,17 @@ watchEffect(() => {
         height: calc( 100vh - 120px );
         overflow: scroll;
      }
+     a.router-link-active{
+      color: #000;
+    }
+    .loan-item {
+        border-bottom: 1px solid #000;
+        width: 100%;
+        padding: 20px 10px 0px 10px;
+        // color: #000;
+    }
+
+    .loan-item:hover{
+        background-color: #e4e4e4;
+    }
 </style>
