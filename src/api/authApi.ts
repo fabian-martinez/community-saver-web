@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { browserLocalPersistence, browserSessionPersistence, getAuth } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBPpSpOQKqCi6VMYjHCtN1TorgNOx3qIyY",
@@ -17,6 +17,6 @@ const fireApp = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(fireApp);
-
+await auth.setPersistence(browserSessionPersistence);
 
 export {fireApp, auth}

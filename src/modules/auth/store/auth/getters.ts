@@ -10,6 +10,9 @@ const getters: GetterTree<Session, RootState> = {
   },
   username: (state: Session) => {
     return state.user?.name || '';
+  },
+  getToken: (state: Session) => {
+    return state.token || ''
   }
 };
 

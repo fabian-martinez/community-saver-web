@@ -67,7 +67,6 @@ const nextPage = () => {
 }
 const prevPage = () => {
     const activeIndex = browserPages.value.findIndex(page => page.active)
-    console.log(browserPages.value)
     if(activeIndex !== -1){
         browserPages.value[activeIndex].active = false;
         if(browserPages.value[activeIndex-1]){

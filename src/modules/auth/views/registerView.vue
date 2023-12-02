@@ -39,11 +39,9 @@
 
   import { useRouter } from 'vue-router';
   import User from '../interfaces/UserInterface';
-import { useStore } from 'vuex';
-import useAuth from '../composables/useAuth';
+  import useAuth from '../composables/useAuth';
 
   const router = useRouter();
-  const store = useStore();
   const { registerUser } = useAuth();
 
   const user = ref<User>({
@@ -54,7 +52,7 @@ import useAuth from '../composables/useAuth';
 
   const onSubmit = async () => {
     const { ok, message } = await registerUser(user.value);
-    if(!ok) return console.log(ok, message)
+    if(!ok) return console.error(ok, message)
     router.push({path:'/'})
 };
 

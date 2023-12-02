@@ -1,15 +1,22 @@
 import { ActionTree } from "vuex";
-import { RootState } from "@/store"; // Ajusta la ruta según la ubicación real de tu archivo RootState
+import store, { RootState } from "@/store"; // Ajusta la ruta según la ubicación real de tu archivo RootState
 import serverApi from "@/api/serverApi";
 import LoanTransactionsState from "../../interfaces/loanTransactionsState";
+import { AxiosRequestConfig } from "axios";
+import getters from "./getters";
 
 const PAGE_SIZE = 15;
 
 const actions: ActionTree<LoanTransactionsState, RootState> = {
-  async loadLoanTransactions({ commit }, loan_id) {
+  async loadLoanTransactions({ commit, getters }, loan_id) {
     try {
-      const queryParams = { params: { per_page: PAGE_SIZE } }
-      const loanTransactionsResponse = (await serverApi.get(`loans/${loan_id}/transactions`,queryParams)).data;
+      const requestConfig:AxiosRequestConfig = { 
+        headers: {
+          Authorization: getters.getToken
+        }
+      }
+      requestConfig.params = { per_page: PAGE_SIZE }
+      const loanTransactionsResponse = (await serverApi.get(`loans/${loan_id}/transactions`,requestConfig)).data;
       const currentLoanTransactions:LoanTransactionsState = {
         loading:true,
         loan_id:loan_id,
@@ -22,13 +29,18 @@ const actions: ActionTree<LoanTransactionsState, RootState> = {
       console.error(error)
     }
   },
-  async moveToPageOfLoanTransactions({ commit }, pageToMove:{loan_id:string, last_page:number}){
+  async moveToPageOfLoanTransactions({ commit, getters }, loanPaginated:{loan_id:string, last_page:number}){
     try {
-      const queryParams = { params: { page:pageToMove.last_page, per_page: PAGE_SIZE } }
-      const loanTransactionsResponse = (await serverApi.get(`loans/${pageToMove.loan_id}/transactions`,queryParams)).data;
+      const requestConfig:AxiosRequestConfig = { 
+        headers: {
+          Authorization: getters.getToken
+        }
+      }
+      requestConfig.params = { params: { page:loanPaginated.last_page, per_page: PAGE_SIZE } }
+      const loanTransactionsResponse = (await serverApi.get(`loans/${loanPaginated.loan_id}/transactions`,requestConfig)).data;
       const currentLoanTransactions:LoanTransactionsState = {
         loading:true,
-        loan_id:pageToMove.loan_id,
+        loan_id:loanPaginated.loan_id,
         total_pages:loanTransactionsResponse.total_pages,
         last_page:loanTransactionsResponse.page,
         transactions:loanTransactionsResponse.records
