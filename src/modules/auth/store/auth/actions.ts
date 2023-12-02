@@ -46,7 +46,6 @@ const actions: ActionTree<Session, RootState> = {
       }
       const {user:userSigned}  = await signInWithEmailAndPassword(auth,email,secret);
       const token = await userSigned.getIdToken()
-      console.log(userSigned,token)
       commit('loginUser', {
           user:{name:userSigned.displayName,email:userSigned.email},
           token:token,
@@ -66,24 +65,17 @@ const actions: ActionTree<Session, RootState> = {
     }
   },
   async checkAuthentication ({ commit }: { commit: Commit }) {
-    const idToken = localStorage.getItem('idToken');
-    const refreshToken = localStorage.getItem('refreshToken');
-  
-    if (!idToken) {
-      commit('logout');
-      return { ok: false, message: 'Token no existe' };
-    }
-  
     try {
-      // const { data } = await authApi.post(':lookup', { idToken });
-      // const { email, displayName } = data.users[0];
+      
+      const userSigned = auth.currentUser 
+      const tokenValidated = await userSigned?.getIdTokenResult()
+
+      if (!tokenValidated) {
+        throw new Error("Unauthorized");
+      }
+
   
-      // const user: User = {
-      //   name: displayName,
-      //   email,
-      // };
-  
-      // commit('loginUser', { user, idToken, refreshToken });
+      commit('loginUser', { userSigned, token:tokenValidated.token, refreshToken:userSigned?.refreshToken });
       return { ok: true };
     } catch (error) {
       commit('logout');

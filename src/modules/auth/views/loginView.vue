@@ -44,7 +44,7 @@ import User from '../interfaces/UserInterface';
 
     const onSubmit = async () => {
         const { ok, message } = await signInUser(userLogin.value);
-        if(!ok) return console.log(ok, message)
+        if(!ok) return console.error(ok, message)
         router.push({path:'/'})
     };
 
