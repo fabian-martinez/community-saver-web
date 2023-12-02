@@ -1,3 +1,5 @@
+import isReloadLoanPage from '@/router/redirectRoot'
+
 export default {
     // todas las rutas de daybook se registran aca
     name: 'loans-manager',
@@ -14,7 +16,8 @@ export default {
             component: () => import(/* webpackChunkName: "daybook-entry" */ '@/modules/loans/views/LoanView.vue'),
             props: ( router: { params: { id: string } } ) => {
                return { id: router.params.id } 
-            }
+            },
+            beforeEnter: [isReloadLoanPage]
          },
      ]
 }
