@@ -1,9 +1,8 @@
 import { ActionTree } from "vuex";
-import store, { RootState } from "@/store"; // Ajusta la ruta según la ubicación real de tu archivo RootState
+import { RootState } from "@/store"; // Ajusta la ruta según la ubicación real de tu archivo RootState
 import serverApi from "@/api/serverApi";
 import LoanTransactionsState from "../../interfaces/loanTransactionsState";
 import { AxiosRequestConfig } from "axios";
-import getters from "./getters";
 
 const PAGE_SIZE = 15;
 
