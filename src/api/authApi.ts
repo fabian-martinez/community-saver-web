@@ -1,14 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { browserLocalPersistence, browserSessionPersistence, getAuth } from "firebase/auth";
+import { browserSessionPersistence, getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBPpSpOQKqCi6VMYjHCtN1TorgNOx3qIyY",
-    authDomain: "community-saver-firebase.firebaseapp.com",
-    projectId: "community-saver-firebase",
-    storageBucket: "community-saver-firebase.appspot.com",
-    messagingSenderId: "357625475661",
-    appId: "1:357625475661:web:a6c3b9dafa74754e636204",
-    measurementId: "G-N28PGLWLW4"
+    apiKey: process.env.VUE_APP_API_KEY
   };
 
 // Initialize Firebase
