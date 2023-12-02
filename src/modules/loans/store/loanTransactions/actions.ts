@@ -35,7 +35,7 @@ const actions: ActionTree<LoanTransactionsState, RootState> = {
           Authorization: getters.getToken
         }
       }
-      requestConfig.params = { params: { page:loanPaginated.last_page, per_page: PAGE_SIZE } }
+      requestConfig.params = { page:loanPaginated.last_page, per_page: PAGE_SIZE }
       const loanTransactionsResponse = (await serverApi.get(`loans/${loanPaginated.loan_id}/transactions`,requestConfig)).data;
       const currentLoanTransactions:LoanTransactionsState = {
         loading:true,

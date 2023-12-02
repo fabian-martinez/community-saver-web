@@ -8,7 +8,7 @@ export function getMembers() {
   const error = ref(null);
 
   const requestConfig:AxiosRequestConfig = { 
-    params: {params:{"per_page":20}},
+    params: {"per_page":20},
     headers: {
       Authorization: store.getters.getToken
     }
