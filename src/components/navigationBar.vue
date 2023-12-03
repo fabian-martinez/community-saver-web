@@ -44,13 +44,13 @@ onMounted(() => {
     });
 })
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 
     #sidebar {
         height: 100vh;
         height: -webkit-fill-available;
         max-height: 100vh;
-    }
+            }
 
     .dropdown-toggle { 
         outline: 0; 

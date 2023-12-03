@@ -1,6 +1,6 @@
 <template lang="">
     <div>
-        <div class="container mt-4">
+        <div class="container mt-4 loan-info">
             <div class="row">
                 <div class="col-12">
                     <h4 class="font-weight-bold">Prestamo {{selectedLoan?.loan_type}}</h4>
@@ -59,8 +59,9 @@ onMounted(() => {
     .loan-info {
         border: 1px solid #000;
         padding: 20px;
-        width: 400px;
-        text-align: center;
+        height: 30vh;
+        text-align: left;
+        overflow: auto;
     }
 
     .section-heading {

@@ -1,7 +1,7 @@
 <template lang="">
     <div>
         <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center mt-4">
+            <div class="transactions-header d-flex justify-content-between align-items-center mt-4">
                 <h3>Historico de transacciones</h3>
                 <nav class="d-inline-flex align-items-center" aria-label="Page navigation example">
                     <ul class="pagination">
@@ -30,7 +30,6 @@ import LoanTransaction from "@/modules/loans/components/loanTransaction.vue";
 import {TRANSACTION_TYPE} from '@/modules/loans/enums/transactionTypeEnum'
 import { computed, onUpdated, ref } from "vue";
 import { useStore } from "vuex";
-import { SortDown } from "@iconoir/vue"
 
 const store = useStore()
 const loanTransactions = computed(() => store.getters.getTransactions)
@@ -82,8 +81,13 @@ const prevPage = () => {
 
 </script>
 <style lang="scss" scoped>
+
+    .transactions-header{
+        height: 10hv;
+    }
+
     .transactions-scrollarea{
-        height: calc( 100vh - 120px );
+        height: 50vh;
         overflow: scroll;
     }
 </style>
