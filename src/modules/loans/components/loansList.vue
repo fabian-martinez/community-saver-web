@@ -1,19 +1,19 @@
 <template lang="">
-    <div>
-        <div class="loans-list-container">
-            <div class="px-2 pt-2">
-                <h2>Selcciona el socio</h2>
-                <select v-model="selectedMember" name="members" id="members" class="form-select" >
-                    <option v-for="member in members?.items" :key="member.id" :value="member">{{ member.name }}</option>
-                </select>
-            </div>
+<div>
+    <div class="loans-list-container">
+        <div class="px-2 pt-2">
+            <h2>Selcciona el socio</h2>
+            <select v-model="selectedMember" name="members" id="members" class="form-select" >
+                <option v-for="member in members?.items" :key="member.id" :value="member">{{ member.name }}</option>
+            </select>
+        </div>
 
-            <div class="loans-scrollarea">
-            <h3>Préstamos del miembro:</h3>
-            <router-link :to="{ name: 'loan', params: { id:loan.id }}" v-for="(loan) in loansByMember" :key="loan.id">
-                <loan-item :loan="loan" class="loan-item"></loan-item>
-            </router-link>
-            </div>
+        <h3>Préstamos del miembro:</h3>
+        <div class="loans-scrollarea">
+        <router-link :to="{ name: 'loan', params: { id:loan.id }}" v-for="(loan) in loansByMember" :key="loan.id">
+            <loan-item :loan="loan" class="loan-item"></loan-item>
+        </router-link>
+</div>
         </div>
     </div>
  </template>
