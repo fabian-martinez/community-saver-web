@@ -31,4 +31,4 @@ jobs:
         zip -r release-artifacts/"${version}".zip release-artifacts/"${version}"
       
         # Upload the artifacts as a release asset
-        gh release upload "${version}" release-artifacts/*
+        gh release upload "${version}" release-artifacts/"${version}".zip
