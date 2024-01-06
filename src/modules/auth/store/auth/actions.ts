@@ -66,8 +66,7 @@ const actions: ActionTree<Session, RootState> = {
   },
   async signOutUser ({ commit }: { commit: Commit }) {
     try {
-      const response = await signOut(auth)
-      console.log(response)
+      await signOut(auth)
       commit('logout');
       return { ok: true };
     } catch (error) {

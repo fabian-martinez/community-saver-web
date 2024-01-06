@@ -3,7 +3,7 @@
   <div id="sidebar" class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;">
     <a href="/" class="d-block p-3 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
       <DollarCircle width="40" height="32"></DollarCircle>
-      <span class="visually-hidden">Icon-only</span>
+<span class="visually-hidden">Icon-only</span>
     </a>
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
       <li class="nav-item">
@@ -20,13 +20,13 @@
     
     <a @click="onLogout" class="d-block p-3 link-dark text-decoration-none" title="Logout" data-bs-toggle="tooltip" data-bs-placement="right">
       <log-out width="40" height="32"></log-out>
-      <span class="visually-hidden">Log Out</span>
+<span class="visually-hidden">Log Out</span>
     </a>
   </div>
 </div>
 </template>
 <script lang="ts" setup>
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { Bank, CreditCard, DollarCircle, LogOut } from "@iconoir/vue"
 import { Tooltip } from "bootstrap"
 import useAuth from "@/modules/auth/composables/useAuth"
@@ -39,6 +39,12 @@ onMounted(() => {
   let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
   tooltipTriggerList.forEach(function (tooltipTriggerEl) {
       new Tooltip(tooltipTriggerEl);
+    });
+})
+onUnmounted(() => {
+  let tooltipTriggerList = document.querySelectorAll('.tooltip')
+  tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      tooltipTriggerEl.remove();
     });
 })
 
