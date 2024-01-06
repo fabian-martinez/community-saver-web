@@ -8,34 +8,32 @@
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
       <li class="nav-item">
         <router-link :to="{name:'loans-manager'}" class="nav-link py-3 border-bottom" aria-current="page" title="Prestamos" data-bs-toggle="tooltip" data-bs-placement="right">
-          <CreditCard></CreditCard>
+          <credit-card></credit-card>
         </router-link>
       </li>
       <li>
         <a href="#" class="nav-link py-3 border-bottom" title="Fondo" data-bs-toggle="tooltip" data-bs-placement="right">
-          <Bank></Bank>
+          <bank></bank>
         </a>
       </li>
     </ul>
-    <div class="dropdown border-top">
-      <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/fabian-martinez.png" alt="mdo" width="24" height="24" class="rounded-circle">
-      </a>
-      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
+    
+    <a @click="onLogout" class="d-block p-3 link-dark text-decoration-none" title="Logout" data-bs-toggle="tooltip" data-bs-placement="right">
+      <log-out width="40" height="32"></log-out>
+      <span class="visually-hidden">Log Out</span>
+    </a>
   </div>
 </div>
 </template>
 <script lang="ts" setup>
 import { onMounted } from 'vue'
-import { Bank, CreditCard, DollarCircle } from "@iconoir/vue"
+import { Bank, CreditCard, DollarCircle, LogOut } from "@iconoir/vue"
 import { Tooltip } from "bootstrap"
+import useAuth from "@/modules/auth/composables/useAuth"
+import { useRouter } from 'vue-router'
+
+const { logout } = useAuth()
+const router = useRouter()
 
 onMounted(() => {
   let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -43,6 +41,11 @@ onMounted(() => {
       new Tooltip(tooltipTriggerEl);
     });
 })
+
+const onLogout = async() => {
+  await logout()
+  router.push({name:'login'})
+}
 </script>
 <style lang="scss" scoped>
 

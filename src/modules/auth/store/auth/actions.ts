@@ -3,7 +3,7 @@ import { ActionTree, Commit } from "vuex";
 import User from "@/modules/auth/interfaces/UserInterface"; // Ajusta la ruta según la ubicación real de tus tipos
 import { RootState } from "@/store";
 import Session from "../../interfaces/SessionInterface";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 
 const actions: ActionTree<Session, RootState> = {
   async registerUser ({ commit }: { commit: Commit }, user: User) {
@@ -58,6 +58,23 @@ const actions: ActionTree<Session, RootState> = {
           return {
               ok: false,
               message: error?.message || "Error desconocido al iniciar sesión",
+          };
+      } else {
+          throw error; // Re-lanzar para mantener la información de tipo
+      }
+    }
+  },
+  async signOutUser ({ commit }: { commit: Commit }) {
+    try {
+      const response = await signOut(auth)
+      console.log(response)
+      commit('logout');
+      return { ok: true };
+    } catch (error) {
+      if (error instanceof Error) {
+          return {
+              ok: false,
+              message: error?.message || "Error desconocido al cerrar sesión",
           };
       } else {
           throw error; // Re-lanzar para mantener la información de tipo

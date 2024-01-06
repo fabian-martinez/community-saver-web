@@ -16,6 +16,7 @@ const mutations: MutationTree<Session> = {
   logout(state) {
     state.user = {}
     state.refreshToken = undefined
+    state.token = undefined
     state.status = 'no-authenticated'
   }
 };

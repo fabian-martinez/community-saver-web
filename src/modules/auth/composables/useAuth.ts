@@ -21,8 +21,9 @@ const useAuth = () => {
   };
 
   const logout = async () => {
-    store.commit('auth/logout');
-    store.commit('journal/cleareEntries');
+    await store.commit('cleanLoans');
+    await store.commit('cleanLoanTransactions');
+    await store.dispatch('signOutUser')
   };
 
   return {
