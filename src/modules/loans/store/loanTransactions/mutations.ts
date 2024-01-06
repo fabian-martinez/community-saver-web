@@ -8,6 +8,13 @@ const mutations: MutationTree<LoanTransactionsState> = {
     state.loan_id=loanTransactions.loan_id
     state.total_pages=loanTransactions.total_pages
     state.transactions=loanTransactions.transactions
+  },
+  cleanLoanTransactions(state) {
+    state.loading=true,
+    state.last_page=0
+    state.loan_id=''
+    state.total_pages=0
+    state.transactions=[]
   }
 };
 
