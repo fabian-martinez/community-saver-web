@@ -1,7 +1,9 @@
 import axios from 'axios' 
 
-const serverApi = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api/v1/'
-})
+const communityServerApiConfig = {
+    baseURL: process.env.VUE_APP_SERVER_API_END_POINT
+  };
+
+const serverApi = axios.create(communityServerApiConfig)
 
 export default serverApi
