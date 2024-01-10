@@ -45,9 +45,9 @@
   const { registerUser } = useAuth();
 
   const user = ref<User>({
-    name: 'Fabian Martinez',
-    email: 'fabian@mail.com',
-    secret: '123456',
+    name: '',
+    email: '',
+    secret: '',
   });
 
   const onSubmit = async () => {

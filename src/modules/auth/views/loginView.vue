@@ -38,8 +38,8 @@ import User from '../interfaces/UserInterface';
     const { signInUser } = useAuth();
 
     const userLogin = ref<User>({
-        email: 'fabian@mail.com',
-        secret: '123456',
+        email: '',
+        secret: '',
     });
 
     const onSubmit = async () => {
