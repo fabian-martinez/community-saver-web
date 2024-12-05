@@ -17,17 +17,13 @@
         <div class="transactions-scrollarea">
             <loan-transaction v-for="transaction in loanTransactions" 
                 :key="transaction.id" 
-                :transaction="transaction"
-                :transaction_type="(transaction.payment_amount > 0)?
-                                TRANSACTION_TYPE.PAYMENT:
-                                TRANSACTION_TYPE.DISBURSEMENT">
+                :transaction="transaction">
             </loan-transaction>
         </div>
     </div>
 </template>
 <script lang="ts" setup>
 import LoanTransaction from "@/modules/loans/components/loanTransaction.vue";
-import {TRANSACTION_TYPE} from '@/modules/loans/enums/transactionTypeEnum'
 import { computed, onUpdated, ref } from "vue";
 import { useStore } from "vuex";
 

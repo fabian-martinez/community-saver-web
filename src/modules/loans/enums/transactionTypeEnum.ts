@@ -1,5 +1,5 @@
 export const enum TRANSACTION_TYPE {
-    PAYMENT = 'Abono',
-    DISBURSEMENT = 'Desenbolso',
-    PROJECTION = 'Proyección'
+    PRINCIPAL_PAYMENT = 'PRINCIPAL_PAYMENT',
+    CREDIT_PAYMENT = 'CREDIT_PAYMENT',
+    DISBURSEMENT = 'DISBURSEMENT'
 }
