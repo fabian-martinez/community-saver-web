@@ -2,9 +2,8 @@ interface LoanTransaction{
     id: number,
     loan_id: string,
     date: number,
-    payment_amount: number,
-    interest_amount: number,
-    disbursement_amount: number,
+    amount: number,
+    type: string
     last_balance: number,
 }
 
